@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 #include "course.h"
+#include "student.h"
+#include "student.cpp"
 
-void addcource (vector <Course> &cources){
+void addcource (vector <Course> &courses){
     Course c;
 
     cout << "Enter Course ID: ";
@@ -13,7 +15,7 @@ void addcource (vector <Course> &cources){
     cout << "Enter credit_hours: ";
     cin >> c.credit_hours;
 
-    cources.push_back(c);
+    courses.push_back(c);
 
      cout << "Course Added Successfully!\n";
 
@@ -29,7 +31,34 @@ Course * findCoursebyid(vector<Course> &Courses , const string &id){
 }
 
 void recordGrade(vector<Course>& Courses, vector<Student>& students){
+    string courseId , studentId;
+    double grade;
+
+    cout << "Enter Course Id: ";
+    cin >> courseId;
     
+    cout << "Enter Student Id: ";
+    cin >> studentId;
+
+    cout << "Enter Grade: ";
+    cin >> grade;
+
+    Course* c = findCoursebyid(Courses, courseId);
+    if(c == 0){
+        cout << "course not found!\n";
+        return;
+    }
+    
+    Student *s = findStudentById(students, studentId);
+    if(s == 0){
+        cout << "Student not found!";
+        return;
+    }
+
+    // grades.push_back({studentId , grade});
+    c->grades.push_back({studentId , grade});
+
+
 }
 
 

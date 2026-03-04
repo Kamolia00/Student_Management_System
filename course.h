@@ -1,5 +1,5 @@
-#ifndef course.h
-#define course.h
+#ifndef course_h
+#define course_h
 
 #include <bits/stdc++.h>
 #include "student.h"
@@ -15,7 +15,7 @@ vector<pair<string , double>> grades;
 
 };
 
-void addcource (vector <Course> &cources);
+void addcource (vector <Course> &courses);
 
 Course * findCoursebyid(vector<Course> &Courses , const string &id);
 

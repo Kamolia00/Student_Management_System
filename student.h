@@ -1,5 +1,5 @@
-#ifndef student.h
-#define student.h
+#ifndef student_h
+#define student_h
 
 #include <bits/stdc++.h>
 
