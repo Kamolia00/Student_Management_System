@@ -6,8 +6,8 @@ int main(){
     vector<Student>students;
     vector <Course> courses;
      string id;
-   while(true){
     int n;
+   while(true){
     cout<<"press 1 to  add a student \n";
     cout<<"press 2 to add a Course \n";
     cout<<" press 3 to record a grade \n";
@@ -28,17 +28,18 @@ int main(){
     case 3:
     recordGrade(courses,students);
     break;
-    case 4:
-    cout<<"enter student id";
-    cin>>id;
-    auto it=findStudentById(students,id);
-    if(it==0){
-        cout<<"student not found\n";
+    case 4: {
+        cout<<"enter student id";
+        cin>>id;
+        auto it=findStudentById(students,id);
+        if(it==0){
+            cout<<"student not found\n";
+        }
+        else{
+            printStudent(*it);
+        }
+        break;
     }
-    else{
-printStudent(*it);
-    }
-break;
         default:
         break;
     }

@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #include "course.h"
 #include "student.h"
-#include "student.cpp"
-
 void addcource (vector <Course> &courses){
     Course c;
 
