@@ -1,8 +1,7 @@
 #ifndef utils_h
 #define utils_h
 #include <iostream>
-#include <string>
-#include <vector>
+#include<bits/stdc++.h>
 int getIntInput(const std::string& prompt);
 double getDoubleInput(const std::string& prompt);
 std::string getStringInput(const std::string& prompt);
