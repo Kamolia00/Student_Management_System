@@ -11,7 +11,7 @@ int main(){
     vector <Course> courses;
      string id;
     int n;
-    string filename="data base.txt";
+    string filename="database.txt";
    while(true){
     cout<<CYAN<<"====== MENU ======"<<RESET<<'\n';
     cout<<CYAN<<"press 1 to  add a student"<<RESET<<'\n' ;
