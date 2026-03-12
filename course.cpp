@@ -1,5 +1,6 @@
 #include "course.h"
 #include "student.h"
+#include "color.h" 
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,31 +11,31 @@ void addCourse(vector<Course>& courses) {
     Course c;
 
     // دخل الكود وشوف موجود قبل كده ولا لا
-    cout << "Enter Course ID: ";
+    cout << CYAN<< "Enter Course ID: " << RESET;
     cin >> c.id;
 
     if (findCourseById(courses, c.id) != nullptr) {
-        cout << "Error: Course with ID " << c.id << " already exists!\n";
+        cout << RED << "Error: Course with ID " << c.id << " already exists!" << RESET << '\n';
         return;
     }
 
     //دخل اسم الماده كله 
-    cout << "Enter Title: ";
+    cout << CYAN << "Enter Title: " << RESET;
     cin.ignore();
     getline(cin, c.title);
 
     // دخل عدد الساعات 
-    cout << "Enter Credit Hours: ";
+    cout << CYAN << "Enter Credit Hours: " << RESET;
     
     while (!(cin >> c.credit_hours) || c.credit_hours < 1 || c.credit_hours > 6) {
-        cout << "Invalid input! Enter valid credit hours (1-6): ";
+        cout << RED << "Invalid input! Enter valid credit hours (1-6): " << RESET;
 
         cin.clear();
         cin.ignore(10000, '\n');
     }
 
     courses.push_back(c);
-    cout << "Course Added Successfully!\n";
+    cout << GREEN << "Course Added Successfully!" << RESET << '\n';
     //تمت بخيرررررررررر 
 }
 
@@ -53,22 +54,22 @@ void recordGrade(vector<Course>& courses, vector<Student>& students) {
     
     // دخل كود الماده
 
-    cout << "Enter Course ID: ";
+    cout << CYAN<< "Enter Course ID: " << RESET;
     cin >> courseId;
 
     Course* c = findCourseById(courses, courseId);
     if (c == nullptr) {
-        cout << "Course not found!\n";
+        cout << RED << "Course not found!" << RESET << '\n';
         return;
     }
 
     // دخل رقم الطالب 
-    cout << "Enter Student ID: ";
+    cout << CYAN << "Enter Student ID: " << RESET;
     cin >> studentId;
 
     Student* s = findStudentById(students, studentId);
     if (s == nullptr) {
-        cout << "Student not found!\n";
+        cout  << RED<< "Student not found!" << RESET << '\n';
         return;
     }
 
@@ -76,15 +77,15 @@ void recordGrade(vector<Course>& courses, vector<Student>& students) {
     for (int i = 0; i < c->grades.size(); ++i) {
 
         if (c->grades[i].first == studentId) {
-            cout << "Error: Grade already recorded for this student in this course!\n";
+            cout  << RED<< "Error: Grade already recorded for this student in this course!" << RESET << '\n';
             return;
         }
     }
 
     
-    cout << "Enter Grade (0-100): ";
+    cout << CYAN << "Enter Grade (0-100): " << RESET;
     while (!(cin >> grade) || grade < 0 || grade > 100) {
-        cout << "Invalid input! Enter a valid grade (0-100): ";
+        cout << RED << "Invalid input! Enter a valid grade (0-100): " << RESET;
         cin.clear();
         cin.ignore(10000, '\n');
     }
@@ -108,31 +109,32 @@ void recordGrade(vector<Course>& courses, vector<Student>& students) {
         s->enrolledCourseIds.push_back(courseId);
     }
 
-    cout << "Grade recorded successfully!\n";
+    cout << GREEN << "Grade recorded successfully!" << RESET << '\n';
 }
 
 void printCourseReport(vector<Course>& courses, vector<Student>& students) {
     string courseId;
-    cout << "Enter Course ID: ";
+    cout  << CYAN<< "Enter Course ID: " << RESET;
     cin >> courseId;
 
     Course* c = findCourseById(courses, courseId);
     if (c == nullptr) {
-        cout << "Course not found!\n";
+        cout  << RED<< "Course not found!" << RESET << '\n';
         return;
     }
 
-    cout << "==========================================\n";
+    cout << BLUE<< "==========================================" << RESET << '\n';
 
-    cout << "Course Report: " << c->title << " (" << c->id << ")\n";
-    cout << "Credit Hours:  " << c->credit_hours << '\n';
+    cout <<CYAN << "Course Report: " << RESET << c->title << " (" << c->id << ")\n";
+    cout  << CYAN<< "Credit Hours:  " << RESET << c->credit_hours << '\n';
 
-    cout << "==========================================\n";
+    cout << BLUE<< "==========================================" << RESET << '\n';
+
 
     
     if (c->grades.empty()) {
-        cout << "No grades recorded yet.\n";
-        cout << "==========================================\n";
+        cout  << RED<< "No grades recorded yet." << RESET << '\n';
+        cout << BLUE<< "==========================================" << RESET << '\n';
         return;
     }
 
@@ -145,8 +147,8 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
     string topStudent = c->grades[0].first;
     string lastStudent = c->grades[0].first;
 
-    cout << "Student ID    | Name                | Grade\n";
-    cout << "===============================================\n";
+    cout  << CYAN<< "Student ID    | Name                | Grade" << RESET << '\n';
+    cout  << BLUE<< "===============================================" << RESET << '\n';
 
     for (int i = 0; i < c->grades.size(); ++i) {
 
@@ -161,7 +163,7 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
             studentName = s->name;
         }
 
-        cout << sid;
+        cout << CYAN << sid << RESET;
 
         // شويه مسافات 
         for (int j = sid.length(); j < 14; ++j) cout << ' ';
@@ -183,10 +185,11 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
 
     double average = total / c->grades.size();
 
-    cout << "------------------------------------------\n";
-    cout << "Total Students: " << c->grades.size() << '\n';
-    cout << "Average Grade:  " << average << '\n';
-    cout << "Highest Grade:  " << highest << " (Student: " << topStudent << ")\n";
-    cout << "Lowest Grade:   " << lowest << " (Student: " << lastStudent << ")\n";
-    cout << "==========================================\n";
+    cout << BLUE << "------------------------------------------" << RESET << '\n';
+    cout << CYAN << "Total Students: " << RESET << c->grades.size() << '\n';
+    cout << CYAN << "Average Grade:  " << RESET << average << '\n';
+    cout << CYAN << "Highest Grade:  " << RESET << highest << " (Student: " << topStudent << ")\n";
+    cout << CYAN << "Lowest Grade:   " << RESET << lowest << " (Student: " << lastStudent << ")\n";
+    cout << BLUE << "------------------------------------------" << RESET << '\n';
+
 }
