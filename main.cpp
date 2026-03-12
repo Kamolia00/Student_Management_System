@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 #include "course.h"
 #include "student.h"
@@ -23,7 +24,7 @@ int main(){
         addStudent(students);
         break;
     case 2:
-    addcource(courses);
+    addCourse(courses);
     break;
     case 3:
     recordGrade(courses,students);
