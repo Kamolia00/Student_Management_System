@@ -35,6 +35,7 @@ void addCourse(vector<Course>& courses) {
 
     courses.push_back(c);
     cout << "Course Added Successfully!\n";
+    //تمت بخيرررررررررر 
 }
 
 Course* findCourseById(vector<Course>& courses, const string& id) {
@@ -73,6 +74,7 @@ void recordGrade(vector<Course>& courses, vector<Student>& students) {
 
     // نتأكد انه مش موجود قبل كده
     for (int i = 0; i < c->grades.size(); ++i) {
+
         if (c->grades[i].first == studentId) {
             cout << "Error: Grade already recorded for this student in this course!\n";
             return;
@@ -92,12 +94,15 @@ void recordGrade(vector<Course>& courses, vector<Student>& students) {
 
     
     bool alreadyEnrolled = false;
+
     for (int i = 0; i < s->enrolledCourseIds.size(); ++i) {
+
         if (s->enrolledCourseIds[i] == courseId) {
             alreadyEnrolled = true;
             break;
         }
     }
+    //بنضيف الماده لو  مش موجوده 
 
     if (!alreadyEnrolled) {
         s->enrolledCourseIds.push_back(courseId);
@@ -118,8 +123,10 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
     }
 
     cout << "==========================================\n";
+
     cout << "Course Report: " << c->title << " (" << c->id << ")\n";
     cout << "Credit Hours:  " << c->credit_hours << '\n';
+
     cout << "==========================================\n";
 
     
@@ -131,15 +138,18 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
 
     
     double total = 0.0;
+
     double highest = c->grades[0].second;
     double lowest = c->grades[0].second;
+
     string topStudent = c->grades[0].first;
-    string bottomStudent = c->grades[0].first;
+    string lastStudent = c->grades[0].first;
 
     cout << "Student ID    | Name                | Grade\n";
     cout << "===============================================\n";
 
     for (int i = 0; i < c->grades.size(); ++i) {
+
         string sid = c->grades[i].first;
         double g = c->grades[i].second;
         total += g;
@@ -156,6 +166,7 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
         // شويه مسافات 
         for (int j = sid.length(); j < 14; ++j) cout << ' ';
         cout << "| " << studentName;
+        
         for (int j = studentName.length(); j < 20; ++j) cout << ' ';
         cout << "| " << g << '\n';
 
@@ -166,7 +177,7 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
         }
         if (g < lowest) {
             lowest = g;
-            bottomStudent = sid;
+            lastStudent = sid;
         }
     }
 
@@ -176,6 +187,6 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
     cout << "Total Students: " << c->grades.size() << '\n';
     cout << "Average Grade:  " << average << '\n';
     cout << "Highest Grade:  " << highest << " (Student: " << topStudent << ")\n";
-    cout << "Lowest Grade:   " << lowest << " (Student: " << bottomStudent << ")\n";
+    cout << "Lowest Grade:   " << lowest << " (Student: " << lastStudent << ")\n";
     cout << "==========================================\n";
 }
