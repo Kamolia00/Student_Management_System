@@ -77,7 +77,7 @@ case 9:{
     }
     else{
         exportCourseCSV(c,students);
-        cout<<GREEN<<"CVS exported"<<RESET<<'/n';
+        cout<<GREEN<<"CVS exported"<<RESET<<'\n';
     }
     break;
 }
