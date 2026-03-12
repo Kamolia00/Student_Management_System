@@ -13,17 +13,17 @@ int main(){
     int n;
     string filename="data base.txt";
    while(true){
-    cout<<CYAN<<"\n====== MENU ======\n";
-    cout<<"press 1 to  add a student \n";
-    cout<<"press 2 to add a Course \n";
-    cout<<"press 3 to record a grade \n";
-    cout<<"press 4 to print a students information \n";
-    cout<<"press 5 to print a students gpa\n";
-    cout<<"press 6 for course report\n";
-    cout<<"press 7 to save data to database\n";
-    cout<<"press 8 to load data from database\n";
-    cout<<"press 9 export course CSV \n";
-    cout<<"press 0 to exit"<<RESET<<'\n';
+    cout<<CYAN<<"====== MENU ======"<<RESET<<'\n';
+    cout<<CYAN<<"press 1 to  add a student"<<RESET<<'\n' ;
+    cout<<CYAN<<"press 2 to add a Course"<<RESET<<'\n' ;
+    cout<<CYAN<<"press 3 to record a grade"<<RESET<<'\n' ;
+    cout<<CYAN<<"press 4 to print a students information"<<RESET<<'\n' ;
+    cout<<CYAN<<"press 5 to print a students gpa"<<RESET<<'\n';
+    cout<<CYAN<<"press 6 for course report"<<RESET<<'\n';
+    cout<<CYAN<<"press 7 to save data to database"<<RESET<<'\n';
+    cout<<CYAN<<"press 8 to load data from database"<<RESET<<'\n';
+    cout<<CYAN<<"press 9 export course CSV"<<RESET<<'\n' ;
+    cout<<CYAN<<"press 0 to exit"<<RESET<<'\n';
     cin>>n;
     if(n==0){
         break;
@@ -62,7 +62,27 @@ int main(){
     cout<<GREEN<<"Database saved"<<RESET<<'\n';
     break;
 }
+case 8:{
+    loadDatabase(students,courses,filename);
+    cout<<GREEN<<"Database loaded"<<RESET<<'\n';
+    break ;
+}
+case 9:{
+    string cid;
+    cout<<CYAN<<"enter course id: "<<RESET<<'\n';
+    cin>>cid;
+    Course*c=findCourseById(courses,cid);
+    if(c==nullptr){
+        cout<<RED<<"Course not found!"<<RESET<<'\n';
+    }
+    else{
+        exportCourseCSV(c,students);
+        cout<<GREEN<<"CVS exported"<<RESET<<'/n';
+    }
+    break;
+}
         default:
+        cout<<RED<<"invalid number pick another one from the menu"<<RESET<<'\n';
         break;
     }
    }
