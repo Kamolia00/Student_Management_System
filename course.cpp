@@ -190,5 +190,4 @@ void printCourseReport(vector<Course>& courses, vector<Student>& students) {
     cout << CYAN << "Highest Grade:  " << RESET << highest << " (Student: " << topStudent << ")\n";
     cout << CYAN << "Lowest Grade:   " << RESET << lowest << " (Student: " << lastStudent << ")\n";
     cout << BLUE << "------------------------------------------" << RESET << '\n';
-
 }
