@@ -33,7 +33,7 @@ void addStudent(vector<Student>& students) {
     cout << CYAN << "Enter Year: " << RESET;
 
     while (!(cin >> s.year) || s.year < 1 || s.year > 7) {
-        
+
         cout << RED << "Invalid input! Enter a valid year (1-7): " 
              << RESET;
         cin.clear();
@@ -95,8 +95,7 @@ void printStudentGPA(vector<Student>& students, vector<Course>& courses) {
 
     // لو الطالب مش مسجل في أي مادة
     if (s->enrolledCourseIds.empty()) {
-        cout << RED << "Student " << s->name 
-             << " is not enrolled in any course." << RESET << '\n';
+        cout << RED << "Student " << s->name << " is not enrolled in any course." << RESET << '\n';
         return;
     }
 
